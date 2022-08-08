@@ -21,5 +21,5 @@ Route::get('/', function () {
 
 
 Route::prefix('webapi')->group(function () {
-    Route::get('/download', [ YoutubeController::class, 'download']);
+    Route::post('/download', [ YoutubeController::class, 'download']);
 });

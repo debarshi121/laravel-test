@@ -1,20 +1,31 @@
 <template>
     <div class="w-full h-screen">
-        <input type="file">
+        <input v-model="videoUrl" type="text" />
+        <button @click="download()">Download</button>
     </div>
 </template>
 
 <script>
 export default {
-    methods: {
-        fetchData(){
-            axios.get(`/webapi/download`).then(res => {
-                console.log(res.data)
-            })
-        }
+    data() {
+        return {
+            videoUrl: "",
+        };
     },
-    mounted(){
-        this.fetchData()
-    }
-}
+    methods: {
+        download() {
+            if (this.videoUrl) {
+                console.log('Downloading...')
+                axios.post(`/webapi/download`, {
+                    videoUrl: this.videoUrl
+                }).then((res) => {
+                    console.log(res.data);
+                });
+            }
+        },
+    },
+    mounted() {
+        //this.fetchData()
+    },
+};
 </script>

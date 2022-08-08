@@ -2,24 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use Symfony\Component\Process\Exception\ProcessFailedException;
+use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
 
 class YoutubeController extends Controller
 {
-    public function download()
+    public function download(Request $request)
     {
-        // https://www.youtube.com/watch?v=BddP6PYo2gs
+       $cmd = `cd storage/downloads/ && yt-dlp --extract-audio --audio-format mp3 {$request->videoUrl}`;
 
-        $cmd = 'yt-dlp --extract-audio --audio-format mp3 "https://www.youtube.com/watch?v=BddP6PYo2gs" -P storage';
-        $process = new Process([$cmd]);
-        $process->run();
+        // try {
+        //     $process = new Process([
+        //         'youtube-dl',
+        //         'https://www.youtube.com/watch?v=BddP6PYo2gs',
+        //         '-o',
+        //         storage_path('app/public/downloads/%(title)s.%(ext)s')
+        //         , '--print-json',
+        //     ]);
 
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+        //     $process->mustRun();
+
+        //     $output = json_decode($process->getOutput(), true);
+
+        //     if (json_last_error() !== JSON_ERROR_NONE) {
+        //         throw new \Exception("Could not download the file!");
+        //     }
+
+        //     return $output;
+
+        //     //return response()->download($output['_filename']);
+
+        // } catch (\Throwable $exception) {
+        //     logger()->critical($exception->getMessage());
+        //     return $exception;
+        // }
+
+        try {
+            exec($cmd, $output, $return_var);
+            return $output;
+        } catch (\Throwable $exception) {
+            return $exception;
         }
+        
 
-        return $process->getOutput();
     }
 }
