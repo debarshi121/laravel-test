@@ -9,41 +9,15 @@ class YoutubeController extends Controller
 {
     public function download(Request $request)
     {
-       $cmd = `cd storage/downloads/ && yt-dlp --extract-audio --audio-format mp3 {$request->videoUrl}`;
+        $cmd = "yt-dlp --extract-audio --audio-format mp3 ".$request->videoUrl;
 
-        // try {
-        //     $process = new Process([
-        //         'youtube-dl',
-        //         'https://www.youtube.com/watch?v=BddP6PYo2gs',
-        //         '-o',
-        //         storage_path('app/public/downloads/%(title)s.%(ext)s')
-        //         , '--print-json',
-        //     ]);
-
-        //     $process->mustRun();
-
-        //     $output = json_decode($process->getOutput(), true);
-
-        //     if (json_last_error() !== JSON_ERROR_NONE) {
-        //         throw new \Exception("Could not download the file!");
-        //     }
-
-        //     return $output;
-
-        //     //return response()->download($output['_filename']);
-
-        // } catch (\Throwable $exception) {
-        //     logger()->critical($exception->getMessage());
-        //     return $exception;
-        // }
+        return file_get_contents($request->videoUrl);
 
         try {
-            exec($cmd, $output, $return_var);
-            return $output;
+            return shell_exec($cmd);
         } catch (\Throwable $exception) {
             return $exception;
         }
         
-
     }
 }

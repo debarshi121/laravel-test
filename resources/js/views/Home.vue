@@ -9,7 +9,7 @@
 export default {
     data() {
         return {
-            videoUrl: "",
+            videoUrl: "https://youtu.be/SmaY7RfBgas",
         };
     },
     methods: {
@@ -19,13 +19,13 @@ export default {
                 axios.post(`/webapi/download`, {
                     videoUrl: this.videoUrl
                 }).then((res) => {
+                    console.log("Downloaded")
                     console.log(res.data);
+                }).catch(err => {
+                    console.log(err.response.data)
                 });
             }
         },
-    },
-    mounted() {
-        //this.fetchData()
     },
 };
 </script>
