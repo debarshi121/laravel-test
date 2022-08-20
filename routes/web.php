@@ -20,6 +20,10 @@ Route::get('/', function () {
 });
 
 
+Route::get('/test', function () {
+    return view('welcome');
+});
+
 Route::prefix('webapi')->group(function () {
     Route::post('/download', [ YoutubeController::class, 'download']);
 });
