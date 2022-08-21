@@ -4902,6 +4902,11 @@
                 <div>Max: {{ focusData.max }}</div>
                 <div>Min: {{ focusData.min }}</div>
             </div>
+            <div class="border bg-green-200 w-full p-3" v-else>
+                <div> Assam </div>
+                <div>Max: {{ state.max }}</div>
+                <div>Min: {{ state.min }}</div>
+            </div>
         </div>
     </div>
 </template>
@@ -5407,7 +5412,10 @@ export default {
                 max: '',
                 min: ''
             },
-            state: {},
+            state: {
+                max: '',
+                min: ''
+            },
             districts: []
         };
     },
@@ -5421,8 +5429,8 @@ export default {
         },
         getMapData() {
             this.state = {
-                max: 22,
-                min: 15,
+                max: 2532,
+                min: 1012,
             }
             this.districts = [
                 {
