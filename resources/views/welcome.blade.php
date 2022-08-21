@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="./js/tailwind.js"></script>
     </head>
     <body class="antialiased">
         <div id="app">

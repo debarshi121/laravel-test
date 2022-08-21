@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-screen-lg mx-auto mt-10 grid grid-cols-12 gap-6" :key="keyIndex">
+    <div class="max-w-screen-xl mx-auto mt-10 grid grid-cols-12 gap-6" :key="keyIndex">
         <div class="col-span-10" v-if="districts.length">
             <svg class="assamMap" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1030.01 734.26"
