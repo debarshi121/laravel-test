@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\YoutubeController;
+use App\Http\Controllers\Neo4jController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::get('/test', function () {
 
 Route::prefix('webapi')->group(function () {
     Route::post('/download', [ YoutubeController::class, 'download']);
+    Route::get('/neo4j', [ Neo4jController::class, 'index']);
 });
